@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
 {
     private uint _coins = 0;
     private List<Coin> _coinsList = new List<Coin>();
+    public string tagPlayer = "Player";
 
     public void SetCoins(List<Coin> list)
     {
@@ -35,8 +36,11 @@ public class Coin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Monete raccolte <color=#FFDE00>{++_coins}</color>");
-        Destroy(this.gameObject);
+        if (collision.CompareTag(tagPlayer))
+        {
+            Debug.Log($"Monete raccolte <color=#FFDE00>{++_coins}</color>");
+            Destroy(this.gameObject);
+        }
     }
 
     void OnDestroy()
